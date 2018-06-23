@@ -16,7 +16,7 @@ class ViewController: UIViewController, CAPSPageMenuDelegate {
         super.viewDidLoad()
         
         self.title = "PAGE MENU"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [kCTForegroundColorAttributeName: UIColor.white] as [NSAttributedStringKey : Any]
         self.navigationController?.navigationBar.tintColor = UIColor.white
         
         // MARK: - Scroll menu setup
