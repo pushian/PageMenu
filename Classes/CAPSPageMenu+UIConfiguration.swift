@@ -52,6 +52,8 @@ extension CAPSPageMenu {
                 configuration.addBottomMenuHairline = value
             case let .menuItemWidthBasedOnTitleTextWidth(value):
                 configuration.menuItemWidthBasedOnTitleTextWidth = value
+            case let .margin4menuItemWidthBasedOnTitleTextWidth(value):
+                configuration.margin4menuItemWidthBasedOnTitleTextWidth = value
             case let .titleTextSizeBasedOnMenuItemWidth(value):
                 configuration.titleTextSizeBasedOnMenuItemWidth = value
             case let .scrollAnimationDurationOnMenuItemTap(value):
@@ -186,7 +188,9 @@ extension CAPSPageMenu {
                 let controllerTitle : String? = controller.title
                 
                 let titleText : String = controllerTitle != nil ? controllerTitle! : "Menu \(Int(index) + 1)"
-                let itemWidthRect : CGRect = (titleText as NSString).boundingRect(with: CGSize(width: 1000, height: 1000), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [kCTFontAttributeName as NSAttributedStringKey:configuration.menuItemFont], context: nil)
+                var itemWidthRect : CGRect = (titleText as NSString).boundingRect(with: CGSize(width: 1000, height: 1000), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [kCTFontAttributeName as NSAttributedStringKey:configuration.menuItemFont], context: nil)
+                itemWidthRect = CGRect.init(x: itemWidthRect.origin.x, y: itemWidthRect.origin.y, width: itemWidthRect.width + configuration.margin4menuItemWidthBasedOnTitleTextWidth, height: itemWidthRect.height)
+
                 configuration.menuItemWidth = itemWidthRect.width
                 
                 menuItemFrame = CGRect(x: totalMenuItemWidthIfDifferentWidths + configuration.menuMargin + (configuration.menuMargin * index), y: 0.0, width: configuration.menuItemWidth, height: configuration.menuHeight)
