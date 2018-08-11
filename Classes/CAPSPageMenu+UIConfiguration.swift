@@ -14,6 +14,10 @@ extension CAPSPageMenu {
             switch (option) {
             case let .selectionIndicatorHeight(value):
                 configuration.selectionIndicatorHeight = value
+            case let .selectionIndicatorWidth(value):
+                configuration.selectionIndicatorWidth = value
+            case let .selectionIndicatorFixedWidth(value):
+                configuration.selectionIndicatorFixedWidth = value
             case let .menuItemSeparatorWidth(value):
                 configuration.menuItemSeparatorWidth = value
             case let .scrollMenuBackgroundColor(value):
@@ -237,7 +241,11 @@ extension CAPSPageMenu {
         var selectionIndicatorFrame : CGRect = CGRect()
         
         if configuration.useMenuLikeSegmentedControl {
-            selectionIndicatorFrame = CGRect(x: 0.0, y: configuration.menuHeight - configuration.selectionIndicatorHeight, width: self.view.frame.width / CGFloat(controllerArray.count), height: configuration.selectionIndicatorHeight)
+            if configuration.selectionIndicatorFixedWidth {
+                selectionIndicatorFrame = CGRect(x: (self.view.frame.width / CGFloat(controllerArray.count) - configuration.selectionIndicatorWidth) / 2.0, y: configuration.menuHeight - configuration.selectionIndicatorHeight, width: configuration.selectionIndicatorWidth, height: configuration.selectionIndicatorHeight)
+            } else {
+                selectionIndicatorFrame = CGRect(x: 0.0, y: configuration.menuHeight - configuration.selectionIndicatorHeight, width: self.view.frame.width / CGFloat(controllerArray.count), height: configuration.selectionIndicatorHeight)
+            }
         } else if configuration.menuItemWidthBasedOnTitleTextWidth {
             selectionIndicatorFrame = CGRect(x: configuration.menuMargin, y: configuration.menuHeight - configuration.selectionIndicatorHeight, width: menuItemWidths[0], height: configuration.selectionIndicatorHeight)
         } else {

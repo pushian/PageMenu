@@ -21,6 +21,8 @@ import UIKit
 
 public enum CAPSPageMenuOption {
     case selectionIndicatorHeight(CGFloat)
+    case selectionIndicatorWidth(CGFloat)
+    case selectionIndicatorFixedWidth(Bool)
     case menuItemSeparatorWidth(CGFloat)
     case scrollMenuBackgroundColor(UIColor)
     case viewBackgroundColor(UIColor)
@@ -45,4 +47,5 @@ public enum CAPSPageMenuOption {
     case scrollAnimationDurationOnMenuItemTap(Int)
     case centerMenuItems(Bool)
     case hideTopMenuBar(Bool)
+    
 }
