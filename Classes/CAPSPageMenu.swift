@@ -261,7 +261,9 @@ extension CAPSPageMenu {
                 var selectionIndicatorWidth : CGFloat = self.view.frame.width / CGFloat(self.controllerArray.count)
                 if self.configuration.selectionIndicatorFixedWidth {
                     selectionIndicatorWidth = self.configuration.selectionIndicatorWidth
-                    selectionIndicatorX = CGFloat(currentPageIndex) * (self.view.frame.width / CGFloat(self.controllerArray.count)) + ((self.view.frame.width / CGFloat(self.controllerArray.count)) - self.configuration.selectionIndicatorWidth) / 2.0
+                    let a = CGFloat(currentPageIndex) * (self.view.frame.width / CGFloat(self.controllerArray.count))
+                    let b = (self.view.frame.width / CGFloat(self.controllerArray.count))
+                    selectionIndicatorX = a + ( b - self.configuration.selectionIndicatorWidth) / 2.0
                 }
                 
                 selectionIndicatorView.frame =  CGRect(x: selectionIndicatorX, y: self.selectionIndicatorView.frame.origin.y, width: selectionIndicatorWidth, height: self.selectionIndicatorView.frame.height)
